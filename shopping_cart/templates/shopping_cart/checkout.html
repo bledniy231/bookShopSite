@@ -1,0 +1,33 @@
+{% extends 'Library/standart.html' %}
+
+{% block title %}
+Оформление заказа
+{% endblock %}
+
+{% block content %}
+<div class="features">
+<h1>Оформление заказа</h1>
+<section>
+    <table class="table">
+        <tr class="text-center">
+            <th><h4>Книги</h4></th><th><h4>Цена</h4></th>
+        </tr>
+        <tr>
+            <td>
+                {% for item in order.get_cart_items %}
+                    <tr>
+                        <td>{{ item }}</td>
+                        <td>{{ item.product.price }} руб.</td>
+                    </tr>
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Сумма заказа</strong> </td>
+            <td><strong>{{ order.get_cart_total }} руб.</strong></td>
+        </tr>
+    </table>
+    <form method="POST" action="{% url 'shopping_cart:update_records' order.id %}">{% csrf_token %}<button id="update_records" class="btn btn-info">Оплатить заказ</button></form>
+</section>
+</div>
+{% endblock content %}

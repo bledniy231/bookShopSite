@@ -1,0 +1,41 @@
+{% extends 'Library/standart.html' %}
+{% load static %}
+
+{% block title %}
+Регистрация
+{% endblock %}
+{% block content %}
+    <div class="features">
+        <h1>Зарегистрируйтесь на сайте</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <p>
+                    {{ field.label_tag }} {{ field }}
+                {% if field == form.username %}
+                <div class="invalid_feedback invalid-feedback" style="display: none"></div>
+                {% endif %}
+                {% if field == form.email %}
+                <div class="emailFeedBackArea invalid-feedback" style="display: none"></div>
+                {% endif %}
+                {% if field == form.password1 %}
+                <div class="password1FeedBackArea invalid-feedback" style="display: none"></div>
+                {% endif %}
+                {% if field == form.password2 %}
+                <div class="password2FeedBackArea invalid-feedback" style="display: none"></div>
+                {% endif %}
+                    {% for error in field.errors %}
+                        <p style="color: darkred">{{ error }}</p>
+                    {% endfor %}
+                    {% if field.errors %}
+                    <p>field.errors</p>
+                    {% endif %}
+                </p>
+            {% endfor %}
+            <button class="btn btn-success" type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+
+
+<script src="{% static 'Library/js/register.js' %}"></script>
+{% endblock %}

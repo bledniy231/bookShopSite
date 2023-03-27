@@ -1,0 +1,15 @@
+{% extends 'Library/standart.html' %}
+
+{% block title %}
+Удаление книги
+{% endblock %}
+{% block content %}
+    <div class="features">
+        <h1>Удалите книгу из списка</h1>
+        <form method="post">
+            {% csrf_token %}
+            <button class="btn btn-warning" type="submit">Удалить запись</button>
+        </form>
+    </div>
+
+{% endblock %}

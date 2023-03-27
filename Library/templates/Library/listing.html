@@ -1,0 +1,28 @@
+{% extends 'Library/standart.html' %}
+
+{% block title %}
+Постраничная навигация
+{% endblock %}
+{% block content %}
+    <div class="features">
+        <h1>Список доступных книг</h1>
+        <h6>Здесь вы можете изменить информацию о книге, её авторе и цене. Так же доступны опции удаления записи и добавления новой записи.</h6>
+        {% for book in page_obj  %}
+            <p>{{ book.name }}, {{ book.author }}, {{ book.price }} руб.
+                <a href="{% url 'library:books_update' book.id %}"><button type="button" class="btn btn-outline-dark btn-sm">Изменить запись</button></a>
+                <a href="{% url 'shopping_cart:add_to_cart' book.id %}" class="btn btn-outline-info btn-sm">Добавить в корзину</a>
+                <a href="{% url 'library:books_delete' book.id %}"><button type="button" class="btn btn-outline-warning btn-sm">Удалить запись</button></a></p>
+        {% endfor %}
+        <nav aria-label="...">
+            <ul class="pagination justify-content-center">
+                {% for page in page_obj.paginator.page_range %}
+                    {% if page_obj.number == page %}
+                        <li class="page-item active"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+{% endblock %}

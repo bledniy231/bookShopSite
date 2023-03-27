@@ -1,0 +1,16 @@
+{% extends 'Library/standart.html' %}
+
+{% block title %}
+Аккаунт пользователя
+{% endblock %}
+{% block content %}
+    <div class="features">
+        <h1>Аккаунт пользователя</h1>
+        <p>Здесь вы можете изменить Ваши пароль, имя, E-Mail,</p>
+        <p><b>Ваш ник-нейм:</b> <big>{{ userName }}</big></p>
+        <p><b>Ваше имя:</b> <big>{{ userFirstName }}</big></p>
+        <p><b>Ваш E-Mail:</b> <big>{{ userEmail }}</big></p>
+        <a href="{% url 'library:password_change' %}"><button type="button" class="btn btn-outline-info">Изменить пароль</button></a> <a href="{% url 'library:firstname_change' %}"><button type="button" class="btn btn-outline-info">Изменить имя</button></a> <a href="{% url 'library:email_change' %}"> <button type="button" class="btn btn-outline-info">Изменить E-Mail</button></a>
+    </div>
+
+{% endblock %}

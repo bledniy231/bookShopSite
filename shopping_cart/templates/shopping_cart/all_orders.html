@@ -1,0 +1,41 @@
+{% extends 'Library/standart.html' %}
+
+{% block title %}
+Все мои заказы
+{% endblock %}
+
+{% block content %}
+<div class="features">
+<h1>Список моих заказов</h1>
+<section>
+{% if all_orders != 0 %}
+    {% for order in all_orders %}
+        <table class="table">
+            <tr class="text-center">
+                <th><h4>Книги</h4></th><th><h4>Цена</h4></th>
+            </tr>
+            <tr>
+                <td>
+                    {% for item in order.get_cart_items %}
+                        <tr>
+                            <td>{{ item }}</td>
+                            <td>{{ item.product.price }} руб.</td>
+                        </tr>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Сумма заказа</strong> </td>
+                <td><strong>{{ order.get_cart_total }} руб.</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">Заказ был совершён {{ order.date_ordered }}</td>
+            </tr>
+        </table>
+    {% endfor %}
+{% else %}
+<h3>Пока что не было совершено ни одного заказа</h3>
+{% endif %}
+</section>
+</div>
+{% endblock content %}

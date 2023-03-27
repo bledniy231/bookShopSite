@@ -1,0 +1,18 @@
+{% extends 'Library/standart.html' %}
+
+{% block title %}
+Изменение данных о книге
+{% endblock %}
+{% block content %}
+    <div class="features">
+        <h1>Измените данные о книге</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.name }}<br>
+            {{ form.author }}<br>
+            {{ form.price }}<br>
+            <span>{{ error }}</span>
+            <button class="btn btn-success" type="submit">Сохранить изменения</button>
+        </form>
+    </div>
+{% endblock %}

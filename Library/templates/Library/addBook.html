@@ -1,0 +1,17 @@
+{% extends 'Library/standart.html' %}
+
+{% block title %}
+Добавление книги
+{% endblock %}
+{% block content %}
+    <div class="features">
+        <h1>Добавьте новую книгу в список</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.name }}<br>
+            {{ form.author }}<br>
+            {{ form.price }}<br>
+            <button class="btn btn-success" type="submit">Добавить запись</button>
+        </form>
+    </div>
+{% endblock %}

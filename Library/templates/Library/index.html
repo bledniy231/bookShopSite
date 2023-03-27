@@ -1,0 +1,18 @@
+{% extends 'Library/standart.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+{% block content %}
+    <div class="features">
+        <h1>{{ title }}</h1>
+        <p>Вот вроде работает, пока что...</p>
+        <button class="btn btn-warning">Кнопошка</button>
+        {% for value in values %}
+            {% if value != 'test' %}
+                <p>{{ value }}</p>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+{% endblock %}

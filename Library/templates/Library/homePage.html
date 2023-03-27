@@ -1,0 +1,22 @@
+{% extends 'Library/standart.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1>Список доступных книг</h1>
+        <h6>Здесь вы можете изменить информацию о книге, её авторе и цене. Так же доступны опции удаления записи и добавления новой записи.</h6>
+    <form method="get">{{ listing_filter.form.as_p }}<button type="submit" class="btn btn-outline-info btn-sm">Применить фильтры</button></form><br>
+        <div class="listOfBooks">
+        {% for book in listing_filter.qs %}
+            <p>{{ book.name }}, {{ book.author }}, {{ book.price }} руб., запись добавил: {{ book.user }}
+                <a href="{% url 'library:books_update' book.id %}"><button type="button" class="btn btn-outline-dark btn-sm">Изменить запись</button></a>
+                <a id="{{ book.id }}" href="{% url 'shopping_cart:add_to_cart' book.id %}" class="btn btn-outline-info btn-sm">Добавить_в_корзину</a>
+                <a href="{% url 'library:books_delete' book.id %}"><button type="button" class="btn btn-outline-warning btn-sm">Удалить запись</button></a></p>
+        {% endfor %}
+        </div>
+        <a href="{% url 'library:addBook' %}"><button type="button" class="btn btn-success">Добавить новый элемент</button></a>
+    </div>
+{% endblock %}

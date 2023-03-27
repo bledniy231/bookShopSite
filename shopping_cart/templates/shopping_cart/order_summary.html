@@ -1,0 +1,58 @@
+{% extends "Library/standart.html" %}
+
+{% block title %}
+Корзина
+{% endblock %}
+
+{% block content %}
+<div class="features">
+<h1>Ваша корзина</h1>
+ <section>
+    <table class="table">
+      <tr class="text-center">
+        <th>Номер</th><th>Книга</th><th>Цена</th>
+      </tr>
+      {% for item in order.get_cart_items %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>
+            {{ item.product.name }}
+            <span>
+                <font size="1"><a href="{% url 'shopping_cart:delete_item' item.id %}">Удалить книгу</a></font>
+            </span>
+          </td>
+          <td>{{ item.product.price }} руб.</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan= 3> Вы не положили ни одной книги в корзину</td>
+        </tr>
+      {% endfor %}
+      <tr>
+        {% if order.get_cart_total != None %}
+        <td colspan=2>
+          <strong>Цена за всё:</strong>
+        </td>
+        
+        <td colspan= 1>
+          <strong>{{ order.get_cart_total }} руб.</strong>
+        </td>
+        {% endif %}
+      </tr>
+      <tr>
+        <td colspan=1 >
+          <a href="{% url 'library:home' %}" class="btn btn-outline-dark pull-left btn-sm">
+            {% if order %}Продолжить покупки{% else %}Добавить книги в корзину{% endif %}
+          </a> 
+        </td>
+        <td colspan=2>
+          {% if order.get_cart_items %}
+            <a id="checkout" href="{% url 'shopping_cart:checkout' %}" class="btn btn-outline-primary btn-sm">Перейти к оформлению заказа</a>
+          {% endif %}
+        </td>
+      </tr>
+    </table>
+ </section>
+</div>
+{% endblock %}
+

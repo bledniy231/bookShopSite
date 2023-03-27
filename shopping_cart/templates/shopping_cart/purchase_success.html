@@ -1,0 +1,12 @@
+{% extends 'Library/standart.html' %}
+
+{% block title %}
+Спасибо за покупку!
+{% endblock %}
+
+{% block content %}
+    <div class="features">
+    <h1>Спасибо за покупку!</h1>
+        <div class="purchase"><a id="go_home" href="{% url 'library:home' %}">Вернуться на стартовую страницу</a></div>
+    </div>
+{% endblock content %}
